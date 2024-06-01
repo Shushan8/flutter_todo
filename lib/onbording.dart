@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/content_model.dart';
-import 'package:flutter_todo/home.dart';
+import 'package:flutter_todo/presentation/screens/tasks_screen.dart';
 
 class Onbording extends StatefulWidget {
   @override
@@ -88,7 +88,7 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Home(),
+                      builder: (_) => TasksScreen(),
                     ),
                   );
                 }
