@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/business_logic/blocs/bloc_exports.dart';
 import 'package:flutter_todo/data/models/task.dart';
+import 'package:flutter_todo/presentation/widgets/tasks_list.dart';
 
 class EditTaskScreen extends StatelessWidget {
-  final Task oldTask;
-  const EditTaskScreen({
+   Task oldTask;
+   EditTaskScreen({
     required this.oldTask,
     super.key,
   });
+  void _removeOrDeleteTask(BuildContext ctx, Task task) {
+    task.isDeleted!
+        ? ctx.read<TasksBloc>().add(DeleteTask(task: task))
+        : ctx.read<TasksBloc>().add(RemoveTask(task: task));
+  }
 
 
   @override
@@ -20,7 +26,7 @@ class EditTaskScreen extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Add Task',
+            'Edit Task',
             style: TextStyle(fontSize: 25),
           ),
           SizedBox(
@@ -30,7 +36,8 @@ class EditTaskScreen extends StatelessWidget {
             autofocus: true,
             controller: titleController,
             decoration: InputDecoration(
-                label: Text('Title'), border: OutlineInputBorder()),
+                label: Text('Title'),
+                 border: OutlineInputBorder()),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,12 +47,14 @@ class EditTaskScreen extends StatelessWidget {
                   child: Text('cancel')),
               ElevatedButton(
                   onPressed: () {
-                    var editedTask = Task(
+                    print(oldTask);
+                    Task editedTask = Task(
                       title: titleController.text,
                       date: DateTime.now().toString()
-                      
                     );
-                    context.read<TasksBloc>().add(EditTask(oldTask: oldTask,newTask: editedTask, ));
+                    print(editedTask);
+                    _removeOrDeleteTask(context, oldTask);
+                    context.read<TasksBloc>().add(AddTask(task: editedTask));
                     Navigator.pop(context);
                   },
                   child: Text('Save'))

@@ -6,7 +6,7 @@ part 'tasks_event.dart';
 part 'tasks_state.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
-  TasksBloc() : super(const TasksState()) {
+  TasksBloc() : super( TasksState()) {
     on<AddTask>(_onAddTask);
     on<UpdateTask>(_onUpdateTask);
     on<DeleteTask>(_onDeleteTask);
@@ -46,9 +46,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   void _onEditTask(EditTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    List<Task> favoriteTasks = state.favoriteTasks;
+    List<Task> allTasks = state.allTasks;
     if (event.oldTask.isFavorite == true) {
-      favoriteTasks
+      allTasks
         ..remove(event.oldTask)
         ..insert(0, event.newTask);
     }
@@ -58,7 +58,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           ..remove(event.oldTask)
           ..insert(0, event.newTask),
         completedTasks: state.completedTasks..remove(event.oldTask),
-        favoriteTasks: favoriteTasks,
+        allTasks: allTasks,
         removedTasks: state.removedTasks,
       ),
     );

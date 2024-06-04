@@ -1,12 +1,12 @@
 part of 'tasks_bloc.dart';
 
 class TasksState extends Equatable {
-  final List<Task> allTasks;
-  final List<Task> padingTasks;
-  final List<Task> completedTasks;
-  final List<Task> favoriteTasks;
-  final List<Task> removedTasks;
-  const TasksState({
+   List<Task> allTasks;
+   List<Task> padingTasks;
+   List<Task> completedTasks;
+   List<Task> favoriteTasks;
+   List<Task> removedTasks;
+   TasksState({
     this.allTasks = const <Task>[],
     this.padingTasks = const <Task>[],
     this.completedTasks = const <Task>[],

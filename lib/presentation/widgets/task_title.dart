@@ -5,7 +5,7 @@ import 'package:flutter_todo/presentation/screens/edit_task_screen.dart';
 import 'package:intl/intl.dart';
 
 class Task_Title extends StatelessWidget {
-  const Task_Title({
+   Task_Title({
     super.key,
     required this.task,
   });

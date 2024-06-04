@@ -5,12 +5,12 @@ import 'package:flutter_todo/presentation/widgets/task_title.dart';
 
 class TasksList extends StatelessWidget {
   
-  const TasksList({
+   TasksList({
     super.key,
     required this.taskList,
   });
 
-  final List<Task> taskList;
+   List<Task> taskList;
 
   @override
   Widget build(BuildContext context) {
