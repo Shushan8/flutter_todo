@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/di/injectable.dart';
 import 'package:flutter_todo/onbording.dart';
 
 import 'business_logic/blocs/bloc_exports.dart';
 
 void main() {
-  BlocOverrides.runZoned(() => runApp(MyApp()));
+  configureDependencies();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
