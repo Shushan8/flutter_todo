@@ -11,8 +11,8 @@ class EditTaskScreen extends StatelessWidget {
   });
   void _removeOrDeleteTask(BuildContext ctx, Task task) {
     task.isDeleted!
-        ? ctx.read<TasksBloc>().add(DeleteTask(task: task))
-        : ctx.read<TasksBloc>().add(RemoveTask(task: task));
+        ? ctx.read<TasksBloc>().add(TasksEvent.delete(task: task))
+        : ctx.read<TasksBloc>().add(TasksEvent.remove(task: task));
   }
 
 
@@ -54,7 +54,7 @@ class EditTaskScreen extends StatelessWidget {
                     );
                     print(editedTask);
                     _removeOrDeleteTask(context, oldTask);
-                    context.read<TasksBloc>().add(AddTask(task: editedTask));
+                    context.read<TasksBloc>().add(TasksEvent.add(task: editedTask));
                     Navigator.pop(context);
                   },
                   child: Text('Save'))

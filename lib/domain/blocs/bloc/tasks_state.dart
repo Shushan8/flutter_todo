@@ -1,4 +1,5 @@
-part of 'tasks_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter_todo/data/models/task.dart';
 
 class TasksState extends Equatable {
    List<Task> allTasks;

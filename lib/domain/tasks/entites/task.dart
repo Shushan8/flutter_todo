@@ -7,7 +7,7 @@ class Task extends Equatable {
    String date;
   bool? isDone;
   bool? isDeleted;
-  bool? isFavorite;
+  bool? isFavorite; 
 
   Task({
     // required this.id,

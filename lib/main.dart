@@ -1,8 +1,8 @@
 // from New branch
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/onbording.dart';
+import 'package:flutter_todo/presentation/pages/onbording.dart';
 
-import 'business_logic/blocs/bloc_exports.dart';
+import 'package:flutter_todo/domain/blocs/bloc_exports.dart';
 import 'data/models/task.dart';
 
 void main() {

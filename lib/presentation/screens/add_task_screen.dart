@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_guid/flutter_guid.dart';
-import 'package:flutter_todo/business_logic/blocs/bloc_exports.dart';
+import 'package:flutter_todo/domain/blocs/bloc_exports.dart';
 import 'package:flutter_todo/data/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
@@ -8,26 +7,25 @@ class AddTaskScreen extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
-      TextEditingController titleController =TextEditingController();
+    TextEditingController titleController = TextEditingController();
 
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Text(
+          const Text(
             'Add Task',
             style: TextStyle(fontSize: 25),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextField(
             autofocus: true,
             controller: titleController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 label: Text('Title'), border: OutlineInputBorder()),
           ),
           Row(
@@ -35,18 +33,16 @@ class AddTaskScreen extends StatelessWidget {
             children: [
               TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text('cancel')),
+                  child: const Text('cancel')),
               ElevatedButton(
                   onPressed: () {
                     var task = Task(
-                     
-                      title: titleController.text,
-                      date: DateTime.now().toString()
-                    );
-                    context.read<TasksBloc>().add(AddTask(task: task));
+                        title: titleController.text,
+                        date: DateTime.now().toString());
+                    context.read<TasksBloc>().add(TasksEvent.add(task: task));
                     Navigator.pop(context);
                   },
-                  child: Text('Ass'))
+                  child: const Text('Ass'))
             ],
           ),
         ],

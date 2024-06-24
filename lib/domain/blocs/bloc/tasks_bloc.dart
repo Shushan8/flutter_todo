@@ -1,25 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:flutter_todo/business_logic/blocs/bloc/tasks_state.dart';
 import 'package:flutter_todo/data/models/task.dart';
 
+part 'tasks_bloc.freezed.dart';
 part 'tasks_event.dart';
-part 'tasks_state.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
   TasksBloc() : super( TasksState()) {
-    on<AddTask>(_onAddTask);
-    on<UpdateTask>(_onUpdateTask);
-    on<DeleteTask>(_onDeleteTask);
-    on<RemoveTask>(_onRemoveTask);
-    on<EditTask>(_onEditTask);
-  }
-  void _onAddTask(AddTask event, Emitter<TasksState> emit) {
-    final state = this.state;
-    emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
-  }
-
-  void _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
-    final state = this.state;
+    on<TasksEventAdd>((event, emit){
+      final state = this.state;
+      emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
+    });
+    on<TasksEventUpdate>((event, emit){
+          final state = this.state;
     final task = event.task;
     final int index = state.allTasks.indexOf(task);
     List<Task> allTasks = List.from(state.allTasks)..remove(task);
@@ -28,24 +23,21 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         : allTasks.insert(index, task.copyWith(isDone: false));
 
     emit(TasksState(allTasks: allTasks));
-  }
-
-  void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
-    final state = this.state;
+    });
+    on<TasksEventDelete>((event, emit){
+          final state = this.state;
     emit(TasksState(
       allTasks: List.from(state.allTasks)..remove(event.task),
     ));
-  }
-
-  void _onRemoveTask(RemoveTask event, Emitter<TasksState> emit) {
-    final state = this.state;
+    });
+    on<TasksEventRemove>((event, emit){
+   final state = this.state;
     emit(TasksState(
       allTasks: List.from(state.allTasks)..remove(event.task),
     ));
-  }
-
-  void _onEditTask(EditTask event, Emitter<TasksState> emit) {
-    final state = this.state;
+    });
+    on<TasksEventEdit>((event, emit){
+  final state = this.state;
     List<Task> allTasks = state.allTasks;
     if (event.oldTask.isFavorite == true) {
       allTasks
@@ -62,6 +54,26 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         removedTasks: state.removedTasks,
       ),
     );
+    });
   }
+  // void _onAddTask(TasksEventAdd event, Emitter<TasksState> emit) {
+   
+  // }
+
+  // void _onUpdateTask(TasksEventUpdate event, Emitter<TasksState> emit) {
+
+  // }
+
+  // void _onDeleteTask(TasksEventDelete event, Emitter<TasksState> emit) {
+
+  // }
+
+  // void _onRemoveTask(TasksEventRemove event, Emitter<TasksState> emit) {
+ 
+  // }
+
+  // void _onEditTask(TasksEventEdit event, Emitter<TasksState> emit) {
+  
+  // }
   
 }
