@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/business_logic/blocs/bloc_exports.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_todo/business_logic/bloc/tasks_bloc.dart';
 import 'package:flutter_todo/data/models/task.dart';
 import 'package:flutter_todo/presentation/screens/edit_task_screen.dart';
 import 'package:intl/intl.dart';
