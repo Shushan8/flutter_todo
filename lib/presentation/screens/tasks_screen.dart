@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_todo/business_logic/bloc/tasks_bloc.dart';
 import 'package:flutter_todo/data/models/task.dart';
 import 'package:flutter_todo/presentation/screens/add_task_screen.dart';
 import 'package:flutter_todo/presentation/widgets/tasks_list.dart';
 
-import '../../business_logic/blocs/bloc_exports.dart';
 
 class TasksScreen extends StatefulWidget {
   TasksScreen({Key? key}) : super(key: key);

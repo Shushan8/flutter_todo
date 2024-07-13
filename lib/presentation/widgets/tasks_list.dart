@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/models/task.dart';
-import 'package:flutter_todo/business_logic/blocs/bloc_exports.dart';
 import 'package:flutter_todo/presentation/widgets/task_title.dart';
 
 class TasksList extends StatelessWidget {
