@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_todo/business_logic/bloc/tasks_bloc.dart';
-import 'package:flutter_todo/data/models/task.dart';
+import 'package:flutter_todo/domain/task/entities/task.dart';
 import 'package:flutter_todo/presentation/screens/edit_task_screen.dart';
 import 'package:intl/intl.dart';
 
@@ -12,16 +10,16 @@ class Task_Title extends StatelessWidget {
   });
 
   final Task task;
-  void _removeOrDeleteTask(BuildContext ctx, Task task) {
-    task.isDeleted!
-        ? ctx.read<TasksBloc>().add(DeleteTask(task: task))
-        : ctx.read<TasksBloc>().add(RemoveTask(task: task));
-  }
+  // void _removeOrDeleteTask(BuildContext ctx, Task task) {
+  //   task.isDeleted!
+  //       ? ctx.read<TasksBloc>().add(DeleteTask(task: task))
+  //       : ctx.read<TasksBloc>().add(RemoveTask(task: task));
+  // }
 void _editTask(BuildContext context){
   showModalBottomSheet(context: context,
    builder: (context) =>SingleChildScrollView(child: Container(
     padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-    child: EditTaskScreen(oldTask: task,),
+    child: EditTaskScreen(),
    ),)
    );
 }
@@ -37,12 +35,13 @@ void _editTask(BuildContext context){
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  task.title,
+                  'sdsd',
+                  // task.title,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: 18,
-                      decoration:
-                          task.isDone! ? TextDecoration.lineThrough : null),
+                  // style: TextStyle(
+                  //     fontSize: 18,
+                  //     decoration:
+                  //         task.isDone! ? TextDecoration.lineThrough : null),
                 ),
                 Text(
                     DateFormat().add_yMMMEd().add_Hms().format(DateTime.now())),
@@ -68,7 +67,9 @@ void _editTask(BuildContext context){
                 icon: Icon(Icons.delete),
                 label: Text('Delete'),
               ),
-              onTap: () => _removeOrDeleteTask(context, task))
+              onTap: () => {}
+              // _removeOrDeleteTask(context, task)
+              )
         ],
       ),
     );

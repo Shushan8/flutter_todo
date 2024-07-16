@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_todo/business_logic/bloc/tasks_bloc.dart';
-import 'package:flutter_todo/data/models/task.dart';
 import 'package:flutter_todo/presentation/screens/add_task_screen.dart';
 import 'package:flutter_todo/presentation/widgets/tasks_list.dart';
 
@@ -25,26 +23,27 @@ void _addTask(BuildContext context){
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TasksBloc, TasksState>(
-      builder: (context, state) {
-        List<Task> tasksList = state.allTasks;
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("Tasks App"),
-          ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TasksList(taskList: tasksList)
-            ],
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: ()=> _addTask(context),
-            tooltip: 'Add Task',
-            child: Icon(Icons.add),
-          ),
-        );
-      },
-    );
+    return Scaffold();
+    // BlocBuilder<TasksBloc, TasksState>(
+    //   builder: (context, state) {
+    //     List<Task> tasksList = state.allTasks;
+    //     return Scaffold(
+    //       appBar: AppBar(
+    //         title: Text("Tasks App"),
+    //       ),
+    //       body: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.center,
+    //         children: [
+    //           TasksList(taskList: tasksList)
+    //         ],
+    //       ),
+    //       floatingActionButton: FloatingActionButton(
+    //         onPressed: ()=> _addTask(context),
+    //         tooltip: 'Add Task',
+    //         child: Icon(Icons.add),
+    //       ),
+    //     );
+    //   },
+    // );
   }
 }
