@@ -42,9 +42,10 @@ class _OnbordingState extends State<Onbording> {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: [
-                      Image.asset(contents[i].image,
-                        height: 400,),
-                      
+                      Image.asset(
+                        contents[i].image,
+                        height: 400,
+                      ),
                       Text(
                         contents[i].title,
                         style: TextStyle(
@@ -97,7 +98,7 @@ class _OnbordingState extends State<Onbording> {
                   curve: Curves.bounceIn,
                 );
               },
-              
+
               // color: Theme.of(context).primaryColor,
               // textColor: Colors.white,
               // shape: RoundedRectangleBorder(

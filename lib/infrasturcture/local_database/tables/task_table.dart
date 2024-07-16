@@ -1,8 +1,5 @@
 part of '../drift_database.dart';
 
-
-
-
 class TaskTable extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();

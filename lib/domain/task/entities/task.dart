@@ -8,6 +8,6 @@ class Task {
     required this.id,
     required this.name,
     required this.startDate,
-    this.endDate,
+    this.endDate, 
   });
 }
