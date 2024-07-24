@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_todo/di/injectable.dart';
-import 'package:flutter_todo/onbording.dart';
+import 'package:flutter_todo/infrasturcture/local_database/drift_database.dart';
+import 'package:flutter_todo/infrasturcture/task/task_repo_impl.dart';
+import 'package:flutter_todo/presentation/screens/intro_screen.dart';
+import 'package:flutter_todo/presentation/screens/onbording.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async{
   configureDependencies();
-
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool seen = (prefs.getBool('seen') ?? false);
+   runApp(MyApp(seen: seen));
 }
 
 class MyApp extends StatelessWidget {
+  final bool seen;
+   MyApp({super.key, required this.seen});
+  final TaskRepoImpl taskRepo = TaskRepoImpl(AppDriftDatabase());
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: Onbording(),
+        home: seen ? Onboarding(taskRepo: taskRepo,) : IntroScreen(),
     );
   }
 }

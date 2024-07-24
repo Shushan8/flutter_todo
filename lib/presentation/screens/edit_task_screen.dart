@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_todo/presentation/widgets/tasks_list.dart';
 
 class EditTaskScreen extends StatelessWidget {
   //  Task oldTask;
