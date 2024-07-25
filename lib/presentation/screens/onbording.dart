@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/content_model.dart';
+import 'package:flutter_todo/presentation/widgets/content_model.dart';
+import 'package:flutter_todo/infrasturcture/task/task_repo_impl.dart';
 import 'package:flutter_todo/presentation/screens/tasks_screen.dart';
 
-class Onbording extends StatefulWidget {
+
+class Onboarding extends StatefulWidget {
+  final TaskRepoImpl taskRepo;
+
+  Onboarding({required this.taskRepo});
+
   @override
-  _OnbordingState createState() => _OnbordingState();
+  _OnboardingState createState() => _OnboardingState();
 }
 
-class _OnbordingState extends State<Onbording> {
+class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
   late PageController _controller;
 
@@ -89,21 +95,16 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => TasksScreen(),
+                      builder: (_) => TaskPage(taskRepo: widget.taskRepo),
                     ),
                   );
+                } else {
+                  _controller.nextPage(
+                    duration: Duration(milliseconds: 100),
+                    curve: Curves.bounceIn,
+                  );
                 }
-                _controller.nextPage(
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.bounceIn,
-                );
               },
-
-              // color: Theme.of(context).primaryColor,
-              // textColor: Colors.white,
-              // shape: RoundedRectangleBorder(
-              //   borderRadius: BorderRadius.circular(20),
-              // ),
             ),
           )
         ],

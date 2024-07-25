@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/domain/task/entities/task.dart';
 import 'package:flutter_todo/presentation/widgets/task_title.dart';
 
+// ignore: must_be_immutable
 class TasksList extends StatelessWidget {
   
    TasksList({

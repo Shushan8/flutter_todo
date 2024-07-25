@@ -13,7 +13,7 @@ class TaskRepoImpl implements ITaskRepo {
   @override
   @override
   Future<void> save({required Task task}) async {
-    _localDatabase.into(_localDatabase.taskTable).insert(
+   await _localDatabase.into(_localDatabase.taskTable).insert(
           TaskTableMapper.toCompanion(task: task),
           mode: InsertMode.insertOrReplace,
         );
